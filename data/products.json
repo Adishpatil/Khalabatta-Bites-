@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "High-Protein Bites",
+    "weight": "200g",
+    "quantity": "10 laddus",
+    "price": "₹250",
+    "description": "Protein-rich traditional laddus made with authentic Kolhapuri ingredients",
+    "image": "high-protein-bites.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Stone-Crushed Thecha",
+    "weight": "250g",
+    "price": "₹170",
+    "description": "Fresh, hand-crushed thecha using traditional stone grinding method",
+    "image": "thecha.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Pure Cow Ghee",
+    "weight": "250g jar",
+    "price": "₹250",
+    "pricePerKg": "₹1000 per kg",
+    "description": "Premium quality pure ghee from grass-fed cows, prepared traditionally",
+    "image": "ghee.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Dry Peanut Chutney",
+    "weight": "200g",
+    "price": "₹120",
+    "description": "Crispy, savory peanut chutney with authentic Kolhapuri spices",
+    "image": "peanut-chutney.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Kolhapuri Achar",
+    "weight": "250g",
+    "price": "₹170",
+    "description": "Traditional pickle made with the finest Kolhapuri ingredients and spices",
+    "image": "achar.jpg"
+  }
+]
