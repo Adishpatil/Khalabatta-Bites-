@@ -1,0 +1,13 @@
+{
+  "name": "khalbatta-bites",
+  "version": "2.0.0",
+  "description": "Khalbatta Bites — Authentic Kolhapuri Food Products Website",
+  "scripts": {
+    "server": "cd server && node server.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": ["kolhapuri", "food", "homemade"],
+  "author": "Khalbatta Bites",
+  "license": "ISC"
+}

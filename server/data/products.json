@@ -1,0 +1,89 @@
+[
+  {
+    "id": 1,
+    "name": "High-Protein Bites",
+    "slug": "high-protein-bites",
+    "weight": "200g",
+    "quantity": "10 laddus",
+    "price": 250,
+    "displayPrice": "₹250",
+    "category": "snacks",
+    "badge": "Bestseller",
+    "description": "Protein-rich traditional laddus made with authentic Kolhapuri ingredients. Packed with nuts, seeds, and natural sweeteners for a healthy and delicious snack.",
+    "image": "high-protein-bites.jpg",
+    "featured": true,
+    "bulkPricing": [
+      { "quantity": "5 boxes", "price": 1200, "displayPrice": "₹1,200" },
+      { "quantity": "10 boxes", "price": 2250, "displayPrice": "₹2,250" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Stone-Crushed Thecha",
+    "slug": "stone-crushed-thecha",
+    "weight": "250g",
+    "price": 170,
+    "displayPrice": "₹170",
+    "category": "condiments",
+    "badge": "Traditional",
+    "description": "Fresh, hand-crushed thecha using traditional stone grinding method. Made with fiery green chilies, garlic, and aromatic spices for the perfect Kolhapuri kick.",
+    "image": "thecha.jpg",
+    "featured": true,
+    "bulkPricing": [
+      { "quantity": "5 jars", "price": 800, "displayPrice": "₹800" },
+      { "quantity": "10 jars", "price": 1500, "displayPrice": "₹1,500" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Pure Cow Ghee",
+    "slug": "pure-cow-ghee",
+    "weight": "250g jar",
+    "price": 250,
+    "displayPrice": "₹250",
+    "pricePerKg": "₹1,000 per kg",
+    "category": "dairy",
+    "badge": "Premium",
+    "description": "Premium quality pure ghee from grass-fed cows, prepared traditionally. Crystal clear, aromatic, and rich in flavor — the way real ghee should taste.",
+    "image": "ghee.jpg",
+    "featured": true,
+    "bulkPricing": [
+      { "quantity": "1 kg", "price": 1000, "displayPrice": "₹1,000" },
+      { "quantity": "5 kg", "price": 4750, "displayPrice": "₹4,750" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Dry Peanut Chutney",
+    "slug": "dry-peanut-chutney",
+    "weight": "200g",
+    "price": 120,
+    "displayPrice": "₹120",
+    "category": "condiments",
+    "badge": "Popular",
+    "description": "Crispy, savory peanut chutney with authentic Kolhapuri spices. Perfect accompaniment for any meal — sprinkle on rice, roti, or enjoy as a standalone snack.",
+    "image": "peanut-chutney.jpg",
+    "featured": false,
+    "bulkPricing": [
+      { "quantity": "5 packs", "price": 550, "displayPrice": "₹550" },
+      { "quantity": "10 packs", "price": 1050, "displayPrice": "₹1,050" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Kolhapuri Achar",
+    "slug": "kolhapuri-achar",
+    "weight": "250g",
+    "price": 170,
+    "displayPrice": "₹170",
+    "category": "condiments",
+    "badge": "Classic",
+    "description": "Traditional pickle made with the finest Kolhapuri ingredients and spices. Tangy, spicy, and full of authentic flavors that complement any Indian meal.",
+    "image": "achar.jpg",
+    "featured": false,
+    "bulkPricing": [
+      { "quantity": "5 jars", "price": 800, "displayPrice": "₹800" },
+      { "quantity": "10 jars", "price": 1500, "displayPrice": "₹1,500" }
+    ]
+  }
+]
