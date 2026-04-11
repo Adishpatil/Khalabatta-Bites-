@@ -134,16 +134,17 @@ Update phone number in:
 
 ## How to Use WhatsApp Integration
 
-The website uses WhatsApp Business API links. Every product has an "Order" button that:
+## How to Use WhatsApp Integration
 
-1. Opens WhatsApp with pre-filled message
-2. Includes product name and price
-3. Customer can modify message before sending
-4. Message goes directly to business number
+The website uses WhatsApp Business for customer communication and order placement.
+
+All order buttons open the official WhatsApp Business account associated with the number below.
+
+**Business Number:** 9197671xxxx
 
 **Format:**
 ```
-https://wa.me/919767188718?text=Message%20text%20here
+https://wa.me/9197671xxxx?text=Message%20text%20here
 ```
 
 ## SEO Optimization
@@ -251,8 +252,8 @@ These features can be added without rebuilding:
 
 For questions or issues:
 1. Check the "How to Order" page for ordering FAQs
-2. Message via WhatsApp: 9767188718
-3. Follow Instagram: @Khalbatta_bites
+2. Message via WhatsApp: 97671xxxx
+3. Follow Instagram: @Khalbatta_bite
 
 ## License
 
