@@ -15,8 +15,8 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // ===== API ROUTES =====
-app.use('https://khalbatta-api.onrender.com/api/products', require('./routes/products'));
-app.use('https://khalbatta-api.onrender.com/api/contact', require('./routes/contact'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/contact', require('./routes/contact'));
 
 // ===== HEALTH CHECK =====
 app.get('/api/health', (req, res) => {
@@ -28,7 +28,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // ===== 404 HANDLER =====
-app.use('/api/{*path}', (req, res) => {
+app.use('/api/*', (req, res) => {
   res.status(404).json({
     success: false,
     message: 'API endpoint not found.',
