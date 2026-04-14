@@ -7,7 +7,14 @@
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "keywords": ["kolhapuri", "food", "homemade"],
+  "keywords": [
+    "kolhapuri",
+    "food",
+    "homemade"
+  ],
   "author": "Khalbatta Bites",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
