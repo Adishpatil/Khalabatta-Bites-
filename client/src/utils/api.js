@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = '/api';
+const API_BASE = 'https://khalbatta-api.onrender.com/api';
 
 /**
  * Fetch all products from the API
