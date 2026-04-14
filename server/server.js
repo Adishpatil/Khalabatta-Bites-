@@ -15,8 +15,8 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // ===== API ROUTES =====
-app.use('/api/products', require('./routes/products'));
-app.use('/api/contact', require('./routes/contact'));
+app.use('https://khalbatta-api.onrender.com/api/products', require('./routes/products'));
+app.use('https://khalbatta-api.onrender.com/api/contact', require('./routes/contact'));
 
 // ===== HEALTH CHECK =====
 app.get('/api/health', (req, res) => {
@@ -40,5 +40,5 @@ app.listen(PORT, () => {
   console.log(`\n🍽️  Khalbatta Bites API Server`);
   console.log(`   Running on: http://localhost:${PORT}`);
   console.log(`   Health:     http://localhost:${PORT}/api/health`);
-  console.log(`   Products:   http://localhost:${PORT}/api/products\n`);
+  console.log(`   Products:   http://localhost:${PORT}/products.json\n`);
 });
