@@ -12,6 +12,7 @@ import { getWhatsAppLink, BUSINESS_INFO } from '../utils/constants';
 const HomePage = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   useEffect(() => {
     fetchProducts()
@@ -29,23 +30,98 @@ const HomePage = () => {
     { value: '0', suffix: '', label: 'Preservatives' },
   ];
 
+  // SECTION 1 — WHY CHOOSE US (4 feature cards)
   const features = [
-    { icon: '🪨', title: 'Traditional Stone Grinding', description: 'We use the authentic Khalbatta (stone mortar) to crush and blend ingredients, preserving natural flavors.' },
-    { icon: '✨', title: 'Homemade & Preservative-Free', description: 'Prepared in small batches at home using natural ingredients. No artificial preservatives or chemicals.' },
-    { icon: '⭐', title: 'Premium Ingredients', description: 'We carefully select the finest ingredients to ensure quality, freshness, and authentic taste.' },
+    {
+      icon: '🏠',
+      title: 'Homemade Preparation',
+      description: 'Prepared using traditional methods in small batches with love and care.',
+    },
+    {
+      icon: '🌶️',
+      title: 'Authentic Kolhapuri Taste',
+      description: 'Traditional recipes with real ingredients — the true flavour of Kolhapur.',
+    },
+    {
+      icon: '🌿',
+      title: 'No Preservatives',
+      description: 'Freshly made without any artificial additives or preservatives.',
+    },
+    {
+      icon: '✨',
+      title: 'Hygienic & Quality Ingredients',
+      description: 'Prepared in a clean and safe kitchen environment with premium ingredients.',
+    },
   ];
 
+  // SECTION 2 — CUSTOMER TESTIMONIALS
   const testimonials = [
-    { text: 'The thecha is absolutely amazing! It reminded me of my grandmother\'s recipe. Authentic Kolhapuri taste delivered to my doorstep.', author: 'Priya S., Pune', stars: 5 },
-    { text: 'Best protein laddus I\'ve ever had. You can taste the quality of ingredients. Will definitely order again!', author: 'Rajesh K., Mumbai', stars: 5 },
-    { text: 'The pure cow ghee is outstanding. Crystal clear and so aromatic. This is what real ghee tastes like!', author: 'Sneha M., Kolhapur', stars: 5 },
+    {
+      text: 'Very tasty and authentic homemade food. The flavours remind me of my grandmother\'s kitchen. Absolutely loved it!',
+      author: 'Priya S., Pune',
+      stars: 5,
+    },
+    {
+      text: 'Fresh and high-quality products. You can really taste the difference. Will definitely order again!',
+      author: 'Rajesh K., Mumbai',
+      stars: 5,
+    },
+    {
+      text: 'Loved the traditional taste. The thecha and chutney are just perfect. Highly recommended!',
+      author: 'Sneha M., Kolhapur',
+      stars: 5,
+    },
   ];
 
+  // PROCESS STEPS
   const processSteps = [
     { icon: '🌾', step: '01', title: 'Select Finest Ingredients', description: 'We hand-pick premium quality spices, nuts, and grains from trusted local sources in Kolhapur.' },
     { icon: '🪨', step: '02', title: 'Traditional Stone Grinding', description: 'Every ingredient is carefully crushed in a Khalbatta (stone mortar) to preserve natural oils and flavors.' },
     { icon: '🏠', step: '03', title: 'Small Batch Preparation', description: 'Made fresh in small batches at home — no factory production, no shortcuts, no preservatives.' },
     { icon: '📦', step: '04', title: 'Fresh to Your Door', description: 'Sealed fresh and delivered promptly to ensure you get the most authentic taste experience.' },
+  ];
+
+  // SECTION 3 — DELIVERY INFORMATION
+  const deliveryItems = [
+    {
+      icon: '📍',
+      title: 'Delivery Areas',
+      description: 'We deliver across Kolhapur, Pune, Mumbai, and nearby areas. Contact us for your location.',
+    },
+    {
+      icon: '⏰',
+      title: 'Delivery Time',
+      description: 'Orders are freshly prepared and delivered within 24 to 48 hours.',
+    },
+    {
+      icon: '💳',
+      title: 'Payment Methods',
+      description: 'We accept UPI, Cash on Delivery, and Bank Transfer for your convenience.',
+    },
+  ];
+
+  // SECTION 6 — FAQ
+  const faqs = [
+    {
+      q: 'How do I place an order?',
+      a: 'You can place an order by messaging us on WhatsApp. Simply click the WhatsApp button, send us your order details, and we\'ll take care of the rest!',
+    },
+    {
+      q: 'How long does delivery take?',
+      a: 'Orders are freshly prepared and typically delivered within 24 to 48 hours depending on your location.',
+    },
+    {
+      q: 'Are products freshly made?',
+      a: 'Yes! All our products are made fresh in small batches using traditional methods. We do not use any preservatives or artificial additives.',
+    },
+    {
+      q: 'What payment methods are accepted?',
+      a: 'We accept UPI, Cash on Delivery, and Bank Transfer. You can choose whichever is most convenient for you.',
+    },
+    {
+      q: 'Do you offer home delivery?',
+      a: 'Yes, we offer home delivery across Kolhapur and nearby areas. For other locations, please contact us on WhatsApp and we\'ll work out the best delivery option for you.',
+    },
   ];
 
   return (
@@ -85,8 +161,30 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* SECTION 4 — ABOUT SECTION */}
+      <section className="about-home-section" id="about-us">
+        <div className="container">
+          <div className="section-title">
+            <h2>About Khalbatta Bites</h2>
+            <p>Our story, our tradition, our promise</p>
+          </div>
+          <motion.div
+            className="about-home-content"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="about-home-icon">🪨</div>
+            <p>
+              At <strong>Khalbatta Bites</strong>, we believe in the power of tradition. Every product is prepared using the <em>Khalbatta</em> — a traditional stone mortar and pestle — to crush and blend ingredients the way it has been done for generations. Our food is made in small batches at home, with a deep commitment to authentic Kolhapuri taste. We use only the finest, freshest ingredients — no artificial preservatives, no shortcuts. Just pure, honest, homemade flavour delivered to your doorstep.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* FEATURED PRODUCTS */}
-      <section>
+      <section className="section-dark">
         <div className="container">
           <div className="section-title">
             <h2>Our Products</h2>
@@ -107,8 +205,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* PROCESS SHOWCASE (replaces video) */}
-      <section className="section-dark process-section">
+      {/* PROCESS SHOWCASE */}
+      <section className="process-section">
         <div className="container">
           <div className="section-title">
             <h2>The Khalbatta Way</h2>
@@ -135,14 +233,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section>
+      {/* SECTION 1 — WHY CHOOSE US */}
+      <section className="section-dark" id="why-choose-us">
         <div className="container">
           <div className="section-title">
             <h2>Why Choose Us</h2>
             <p>What makes Khalbatta Bites special</p>
           </div>
-          <div className="features-grid">
+          <div className="features-grid features-grid-4">
             {features.map((f, i) => (
               <FeatureCard key={i} index={i} {...f} />
             ))}
@@ -150,8 +248,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section-dark">
+      {/* SECTION 2 — TESTIMONIALS */}
+      <section id="testimonials">
         <div className="container">
           <div className="section-title">
             <h2>What Our Customers Say</h2>
@@ -165,7 +263,67 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* QUICK CONTACT — visible before footer */}
+      {/* SECTION 3 — DELIVERY INFORMATION */}
+      <section className="section-dark" id="delivery-info">
+        <div className="container">
+          <div className="section-title">
+            <h2>Delivery Information</h2>
+            <p>Fast, fresh, and convenient delivery to your doorstep</p>
+          </div>
+          <div className="delivery-info-grid">
+            {deliveryItems.map((item, i) => (
+              <motion.div
+                key={i}
+                className="delivery-info-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div className="delivery-info-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6 — FAQ */}
+      <section id="faq">
+        <div className="container">
+          <div className="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Got questions? We've got answers.</p>
+          </div>
+          <div className="faq-list">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                className={`faq-item ${activeFaq === i ? 'active' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+              >
+                <button
+                  className="faq-question"
+                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+                  aria-expanded={activeFaq === i}
+                >
+                  <span>{faq.q}</span>
+                  <em className="faq-icon">+</em>
+                </button>
+                <div className="faq-answer">
+                  <p>{faq.a}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* QUICK CONTACT */}
       <section className="quick-contact-section">
         <div className="container">
           <div className="section-title">
