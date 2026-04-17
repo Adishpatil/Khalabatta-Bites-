@@ -10,9 +10,15 @@ import ProductsPage from './pages/ProductsPage';
 import PriceListPage from './pages/PriceListPage';
 import OrderPage from './pages/OrderPage';
 import ContactPage from './pages/ContactPage';
+import { warmUpBackend } from './utils/api';
 
 const App = () => {
   const location = useLocation();
+
+  // Warm up Render backend on first load (fire-and-forget)
+  useEffect(() => {
+    warmUpBackend();
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
