@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spiffy-lebkuchen-64451a.netlify.app/sitemap.xml
