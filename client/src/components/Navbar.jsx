@@ -10,11 +10,12 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
     document.body.style.overflow = '';
@@ -23,6 +24,11 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
     document.body.style.overflow = !isOpen ? 'hidden' : '';
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.body.style.overflow = '';
   };
 
   const navLinks = [
@@ -37,7 +43,7 @@ const Navbar = () => {
   return (
     <header className={scrolled ? 'scrolled' : ''}>
       <div className="header-container">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={closeMenu}>
           <img src="/images/logo.png" alt="Khalbatta Bites Logo" />
           <div className="logo-text">
             {BUSINESS_INFO.businessName}
@@ -45,7 +51,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <nav>
+        <nav className="desktop-nav">
           {navLinks.map((link) => (
             <Link
               key={link.path}
@@ -61,6 +67,7 @@ const Navbar = () => {
           className={`mobile-toggle ${isOpen ? 'active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           <span /><span /><span />
         </button>
@@ -74,23 +81,34 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onClick={(e) => { if (e.target === e.currentTarget) closeMenu(); }}
           >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.path}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <Link
-                  to={link.path}
-                  className={location.pathname === link.path ? 'active' : ''}
-                  onClick={toggleMenu}
+            <button className="mobile-nav-close" onClick={closeMenu} aria-label="Close menu">
+              ✕
+            </button>
+            <div className="mobile-nav-links">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.path}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06 }}
                 >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    to={link.path}
+                    className={location.pathname === link.path ? 'active' : ''}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mobile-nav-footer">
+              <a href={BUSINESS_INFO.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-primary mobile-nav-cta">
+                💬 Order on WhatsApp
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

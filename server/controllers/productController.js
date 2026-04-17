@@ -4,14 +4,27 @@ const fs = require('fs');
 
 const PRODUCTS_PATH = path.join(__dirname, '..', 'data', 'products.json');
 
+// In-memory cache — read JSON once, serve from memory
+let productsCache = null;
+
+const loadProducts = () => {
+  if (!productsCache) {
+    const data = fs.readFileSync(PRODUCTS_PATH, 'utf-8');
+    productsCache = JSON.parse(data);
+    console.log(`[Products] Loaded ${productsCache.length} products into memory cache`);
+  }
+  return productsCache;
+};
+
 /**
  * GET /api/products
- * Returns all products from the JSON data file.
+ * Returns all products from in-memory cache.
  */
 const getProducts = (req, res) => {
   try {
-    const data = fs.readFileSync(PRODUCTS_PATH, 'utf-8');
-    const products = JSON.parse(data);
+    const products = loadProducts();
+    // Cache for 1 hour on CDN/browser
+    res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
     res.json(products);
   } catch (error) {
     console.error('Error reading products:', error.message);
@@ -28,8 +41,7 @@ const getProducts = (req, res) => {
  */
 const getProductById = (req, res) => {
   try {
-    const data = fs.readFileSync(PRODUCTS_PATH, 'utf-8');
-    const products = JSON.parse(data);
+    const products = loadProducts();
     const product = products.find((p) => p.id === parseInt(req.params.id));
 
     if (!product) {
@@ -39,6 +51,7 @@ const getProductById = (req, res) => {
       });
     }
 
+    res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
     res.json(product);
   } catch (error) {
     console.error('Error reading product:', error.message);

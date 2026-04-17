@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import PageHero from '../components/PageHero';
 import PriceCard from '../components/PriceCard';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { SkeletonPriceGrid } from '../components/SkeletonPriceCard';
 import ErrorMessage from '../components/ErrorMessage';
 import { fetchProducts } from '../utils/api';
 import { getWhatsAppLink } from '../utils/constants';
@@ -26,7 +26,7 @@ const PriceListPage = () => {
 
       <section>
         <div className="container">
-          {loading && <LoadingSpinner message="Loading prices..." />}
+          {loading && <SkeletonPriceGrid count={5} />}
           {error && <ErrorMessage message={error} onRetry={loadProducts} />}
           {!loading && !error && products.length > 0 && (
             <div className="price-cards">

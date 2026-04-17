@@ -5,16 +5,21 @@ import ProductCard from '../components/ProductCard';
 import TestimonialCard from '../components/TestimonialCard';
 import FeatureCard from '../components/FeatureCard';
 import StatsCounter from '../components/StatsCounter';
+import { SkeletonGrid } from '../components/SkeletonCard';
 import { fetchProducts } from '../utils/api';
-import { getWhatsAppLink } from '../utils/constants';
+import { getWhatsAppLink, BUSINESS_INFO } from '../utils/constants';
 
 const HomePage = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchProducts()
-      .then((products) => setFeaturedProducts(products.filter((p) => p.featured).slice(0, 3)))
-      .catch(console.error);
+      .then((products) => {
+        setFeaturedProducts(products.filter((p) => p.featured).slice(0, 3));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   const stats = [
@@ -34,6 +39,13 @@ const HomePage = () => {
     { text: 'The thecha is absolutely amazing! It reminded me of my grandmother\'s recipe. Authentic Kolhapuri taste delivered to my doorstep.', author: 'Priya S., Pune', stars: 5 },
     { text: 'Best protein laddus I\'ve ever had. You can taste the quality of ingredients. Will definitely order again!', author: 'Rajesh K., Mumbai', stars: 5 },
     { text: 'The pure cow ghee is outstanding. Crystal clear and so aromatic. This is what real ghee tastes like!', author: 'Sneha M., Kolhapur', stars: 5 },
+  ];
+
+  const processSteps = [
+    { icon: '🌾', step: '01', title: 'Select Finest Ingredients', description: 'We hand-pick premium quality spices, nuts, and grains from trusted local sources in Kolhapur.' },
+    { icon: '🪨', step: '02', title: 'Traditional Stone Grinding', description: 'Every ingredient is carefully crushed in a Khalbatta (stone mortar) to preserve natural oils and flavors.' },
+    { icon: '🏠', step: '03', title: 'Small Batch Preparation', description: 'Made fresh in small batches at home — no factory production, no shortcuts, no preservatives.' },
+    { icon: '📦', step: '04', title: 'Fresh to Your Door', description: 'Sealed fresh and delivered promptly to ensure you get the most authentic taste experience.' },
   ];
 
   return (
@@ -80,35 +92,46 @@ const HomePage = () => {
             <h2>Our Products</h2>
             <p>Handcrafted with love using traditional Kolhapuri recipes</p>
           </div>
-          <div className="products-grid">
-            {featuredProducts.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          {loading ? (
+            <SkeletonGrid count={3} />
+          ) : (
+            <div className="products-grid">
+              {featuredProducts.map((product, i) => (
+                <ProductCard key={product.id} product={product} index={i} />
+              ))}
+            </div>
+          )}
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
             <Link to="/products" className="btn btn-secondary">View All Products →</Link>
           </div>
         </div>
       </section>
 
-      {/* VIDEO / PROMO */}
-      <section className="section-dark video-section">
+      {/* PROCESS SHOWCASE (replaces video) */}
+      <section className="section-dark process-section">
         <div className="container">
           <div className="section-title">
             <h2>The Khalbatta Way</h2>
-            <p>Watch how we prepare our authentic products using traditional methods</p>
+            <p>How we craft every product with authenticity and care</p>
           </div>
-          <motion.div
-            className="video-wrapper"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            onClick={() => window.open(getWhatsAppLink('Hello, I want to know more about Khalbatta Bites'), '_blank')}
-          >
-            <img src="/images/hero-bg.jpg" alt="Khalbatta Bites Traditional Preparation" />
-            <div className="video-play-btn" />
-          </motion.div>
+          <div className="process-grid">
+            {processSteps.map((item, i) => (
+              <motion.div
+                key={i}
+                className="process-step"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+              >
+                <div className="process-step-number">{item.step}</div>
+                <div className="process-step-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                {i < processSteps.length - 1 && <div className="process-connector" />}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -138,6 +161,33 @@ const HomePage = () => {
             {testimonials.map((t, i) => (
               <TestimonialCard key={i} testimonial={t} index={i} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* QUICK CONTACT — visible before footer */}
+      <section className="quick-contact-section">
+        <div className="container">
+          <div className="section-title">
+            <h2>Get in Touch</h2>
+            <p>Have questions? Reach out to us directly — we respond fast!</p>
+          </div>
+          <div className="quick-contact-grid">
+            <a href={getWhatsAppLink('Hello, I have a question about Khalbatta Bites')} target="_blank" rel="noopener noreferrer" className="quick-contact-card">
+              <span className="quick-contact-icon">💬</span>
+              <span className="quick-contact-label">WhatsApp</span>
+              <span className="quick-contact-detail">Message Us</span>
+            </a>
+            <a href={BUSINESS_INFO.phoneLink} className="quick-contact-card">
+              <span className="quick-contact-icon">📞</span>
+              <span className="quick-contact-label">Call Us</span>
+              <span className="quick-contact-detail">{BUSINESS_INFO.phoneFormatted}</span>
+            </a>
+            <a href={BUSINESS_INFO.instagramLink} target="_blank" rel="noopener noreferrer" className="quick-contact-card">
+              <span className="quick-contact-icon">📸</span>
+              <span className="quick-contact-label">Instagram</span>
+              <span className="quick-contact-detail">{BUSINESS_INFO.instagram}</span>
+            </a>
           </div>
         </div>
       </section>

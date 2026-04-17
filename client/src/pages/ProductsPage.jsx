@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import PageHero from '../components/PageHero';
 import ProductCard from '../components/ProductCard';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { SkeletonGrid } from '../components/SkeletonCard';
 import ErrorMessage from '../components/ErrorMessage';
 import { fetchProducts } from '../utils/api';
 import { getWhatsAppLink } from '../utils/constants';
@@ -26,7 +26,7 @@ const ProductsPage = () => {
 
       <section>
         <div className="container">
-          {loading && <LoadingSpinner message="Loading products..." />}
+          {loading && <SkeletonGrid count={5} />}
           {error && <ErrorMessage message={error} onRetry={loadProducts} />}
           {!loading && !error && products.length > 0 && (
             <div className="products-grid">
